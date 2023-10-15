@@ -7,9 +7,15 @@ var files = Directory.GetFiles(@"G:\RiderProjects\moorestech", "*.cs", SearchOpt
 
 foreach (var file in files)
 {
+    //ファイル名にAssemblyInfo.csを含むファイルを除外する
+    var fileName = Path.GetFileName(file);
+    if (fileName.Contains("AssemblyInfo.cs") || fileName.Contains("AssemblyAttributes.cs"))
+    {
+        continue;
+    }
+
     var result = CSMiniProgram.GetMinimize(file);
 
-    var fileName = Path.GetFileName(file);
     Console.WriteLine(fileName);
     File.WriteAllText(@"G:\moorestech\AutoCoder\compiler\compiler\" + fileName, result);
 }
