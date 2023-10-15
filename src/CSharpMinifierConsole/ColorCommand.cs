@@ -18,7 +18,7 @@ using System;
 using System.Linq;
 using CSharpMinifier;
 
-partial class Program
+partial class CSMiniProgram
 {
     static void ColorCommand(ProgramArguments args)
     {

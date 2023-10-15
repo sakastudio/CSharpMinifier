@@ -22,7 +22,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-partial class Program
+partial class CSMiniProgram
 {
     enum HashOutputFormat
     {

@@ -19,7 +19,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using CSharpMinifier;
 
-partial class Program
+partial class CSMiniProgram
 {
     static void RegionsCommand(ProgramArguments args)
     {

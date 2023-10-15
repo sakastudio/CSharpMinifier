@@ -17,7 +17,7 @@
 using System;
 using System.IO;
 
-partial class Program
+partial class CSMiniProgram
 {
     static void GlobCommand(ProgramArguments args)
     {

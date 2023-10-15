@@ -20,7 +20,7 @@ using System.Text.RegularExpressions;
 using CSharpMinifier;
 using CSharpMinifier.Internals;
 
-partial class Program
+partial class CSMiniProgram
 {
     static void GrepCommand(ProgramArguments args)
     {

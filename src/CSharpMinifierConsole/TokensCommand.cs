@@ -20,7 +20,7 @@ using System.Linq;
 using CSharpMinifier;
 using CSharpMinifier.Internals;
 
-partial class Program
+partial class CSMiniProgram
 {
     static void TokensCommand(ProgramArguments args)
     {

@@ -130,6 +130,7 @@ namespace CSharpMinifier
                     {
                         case TokenKind.NewLine:
                         case TokenKind.WhiteSpace:
+                        //case TokenKind.PreprocessorDirective: // sakastudio 追加
                             break;
 
                         case var k

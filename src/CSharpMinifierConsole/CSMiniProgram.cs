@@ -24,7 +24,7 @@ using AngryArrays.Unshift;
 using CSharpMinifier;
 using Microsoft.Extensions.FileSystemGlobbing;
 
-static partial class Program
+public static partial class CSMiniProgram
 {
     static int Wain(ProgramArguments args, out bool verbose)
     {
@@ -60,13 +60,16 @@ static partial class Program
                  ? FindProgramPath(validatorExecutableName)
                  : validatorExecutableName);
 
+            var result = new StringWriter();
             foreach (var (_, source) in ReadSources(args.ArgFile, args.OptGlobDirInfo))
             {
-                Minify(source, Console.Out);
+                Minify(source, result);
 
                 if (args.OptValidate && !Validate(stdin => Minify(source, stdin)))
                     throw new Exception("Minified version is invalid.");
             }
+            Console.WriteLine();
+            Console.Write(result.ToString());
 
             void Minify(string source, TextWriter output)
             {
@@ -120,6 +123,25 @@ static partial class Program
         }
     }
 
+
+    public static string GetMinimize(string path)
+    {
+        var result = new StringWriter();
+
+        var nl = false;
+        foreach (var s in Minifier.Minify(File.ReadAllText(path)))
+        {
+            if (nl = s == null)
+                result.WriteLine();
+            else
+                result.Write(s);
+        }
+        if (!nl)
+            result.WriteLine();
+
+        return result.ToString();
+    }
+
     static class Minifier
     {
         public static IEnumerable<string> Minify(string source,
@@ -136,7 +158,8 @@ static partial class Program
             if (keepImportantComment)
                 options = options.OrCommentFilterOf(MinificationOptions.Default.FilterImportantComments());
 
-            return CSharpMinifier.Minifier.Minify(source, newLine: string.Empty, options);
+            //修正
+            return CSharpMinifier.Minifier.Minify(source, newLine:"\n", options);
         }
     }
 
